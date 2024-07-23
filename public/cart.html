@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ecommerceApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - Gitam Custom Online Store</title>
+  <style>
+     nav {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    /* Other styles for the page content */
+  
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    .cart-item img {
+      max-width: 100px;
+      height: auto;
+      margin-right: 20px;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-details h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .cart-item-details p {
+      margin-bottom: 10px;
+    }
+
+    .cart-item-price {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html">Our Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="contact-us.html">Contact Us</a>
+        <a href="about-us.html">About Us</a>
+      </nav>
+
+  <header>
+    <h1>Shopping Cart</h1>
+  </header>
+
+  <div class="container" ng-controller="CartController">
+    <div class="cart-item" ng-repeat="item in cart">
+      <img ng-src="{{ item.image }}" alt="{{ item.name }}">
+      <div class="cart-item-details">
+        <h2>{{ item.name }}</h2>
+        <p>{{ item.description }}</p>
+        <p class="cart-item-price">$ {{ item.price }}</p>
+      </div>
+    </div>
+    <div ng-if="cart.length === 0">
+      <p>Your cart is empty.</p>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    angular.module('ecommerceApp', [])
+    .controller('CartController', ['$scope', function($scope) {
+      // Mock data for demonstration
+      $scope.cart = [
+        {
+          name: 'Custom T-Shirt',
+          description: 'Design your own t-shirt with your favorite graphics and slogans.',
+          price: 19.99,
+          image: 'https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Faa%2Ffa%2Faafa1d778e4225bcf6a3344180beb2a1764009a8.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_tshirtstanks_shortsleeve%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]'
+        },
+        {
+          name: 'Personalized Mug',
+          description: 'Enjoy your favorite beverage in a mug personalized with your photos or messages.',
+          price: 12.99,
+          image: 'https://www.homewetbar.com/media/catalog/product/cache/265d7bf611d39b8f80e93d32d7319b33/7/5/7549-oakmont-barelemenet-black-coffee-mug-up-5-17.jpg'
+        }
+        // Add more items as needed
+      ];
+    }]);
+  </script>
+</body>
+</html>

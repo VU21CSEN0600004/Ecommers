@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ecommerceApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add to Cart - Gitam Custom Online Store</title>
+  <style>
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+   
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .product {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .product img {
+      max-width: 100px;
+      height: auto;
+      margin-right: 20px;
+    }
+
+    .product-details {
+      flex: 1;
+    }
+
+    .product-details h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .product-details p {
+      margin-bottom: 10px;
+    }
+
+    .product-price {
+      font-weight: bold;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    .cart {
+      margin-top: 20px;
+      border-top: 2px solid #ccc;
+      padding-top: 20px;
+    }
+
+    .cart-total {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="products.html">Our Products</a>
+    <a href="cart.html">Cart</a>
+    <a href="contact-us.html">Contact Us</a>
+    <a href="about-us.html">About Us</a>
+  </nav>
+  <header>
+    <h1>Add to Cart</h1>
+  </header>
+
+  <div class="container" ng-controller="CartController">
+    <div class="product" ng-repeat="product in products">
+      <img ng-src="{{ product.image }}" alt="{{ product.name }}">
+      <div class="product-details">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        <p class="product-price">Rs {{ product.price }}</p>
+        <button class="btn" ng-click="addToCart(product)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="cart" ng-show="cart.length">
+      <h2>Shopping Cart</h2>
+      <ul>
+        <li ng-repeat="item in cart">{{ item.name }} - RS{{ item.price }}</li>
+      </ul>
+      <p class="cart-total">Total: Rs{{ getTotal() }}</p>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    angular.module('ecommerceApp', [])
+    .controller('CartController', ['$scope', function($scope) {
+      $scope.products = [
+        {
+          name: 'Custom T-Shirt',
+          description: 'Design your own t-shirt with your favorite graphics and slogans.',
+          price: 499,
+          image:'https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Faa%2Ffa%2Faafa1d778e4225bcf6a3344180beb2a1764009a8.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_tshirtstanks_shortsleeve%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]'
+
+        },
+        {
+          name: 'Personalized Mug',
+          description: 'Enjoy your favorite beverage in a mug personalized with your photos or messages.',
+          price: 299,
+          image: 'https://www.homewetbar.com/media/catalog/product/cache/265d7bf611d39b8f80e93d32d7319b33/7/5/7549-oakmont-barelemenet-black-coffee-mug-up-5-17.jpg'
+        },
+        {
+          name: 'Custom Phone Case',
+          description: 'Protect your phone in style with a custom phone case featuring your own designs.',
+          price: 99,
+          image: 'https://www.ilounge.com/wp-content/uploads/2019/09/Crocodile-Grain-Leather-Case-for-iPhone-11.png'
+        }
+     
+      ];
+
+      $scope.cart = [];
+
+      $scope.addToCart = function(product) {
+        $scope.cart.push(product);
+      };
+
+      $scope.getTotal = function() {
+        var total = 0;
+        angular.forEach($scope.cart, function(item) {
+          total += item.price;
+        });
+        return total.toFixed(2);
+      };
+    }]);
+  </script>
+</body>
+</html>

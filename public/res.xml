@@ -1,0 +1,26 @@
+<restaurant>
+    <menu>
+        <item>
+            <name>Chicken Alfredo</name>
+            <price>$12.99</price>
+        </item>
+        <item>
+            <name>Vegetable Stir Fry</name>
+            <price>$10.99</price>
+        </item>
+        <!-- More menu items -->
+    </menu>
+    <tables>
+        <table>
+            <number>1</number>
+            <capacity>4</capacity>
+            <status>available</status>
+        </table>
+        <table>
+            <number>2</number>
+            <capacity>6</capacity>
+            <status>occupied</status>
+        </table>
+        <!-- More tables -->
+    </tables>
+</restaurant>

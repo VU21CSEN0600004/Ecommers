@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ecommerceApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Gitam Custom Online Store</title>
+  <style>
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="products.html">Our Products</a>
+    <a href="cart.html">Cart</a>
+    <a href="contact-us.html">Contact Us</a>
+    <a href="about-us.html">About Us</a>
+  </nav>
+  <header>
+    <h1>Contact Us</h1>
+  </header>
+
+  <div class="container" ng-controller="ContactController">
+    <form name="contactForm" ng-submit="submitForm()" novalidate>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" ng-model="formData.name" required>
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" ng-model="formData.email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" ng-model="formData.message" required></textarea>
+
+      <button type="submit" class="btn" ng-disabled="contactForm.$invalid">Send Message</button>
+    </form>
+    <form>
+      <button type="submit" class="btn" ng-disabled="contactForm.$invalid">chat bot</button>
+
+    </form>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    angular.module('ecommerceApp', [])
+    .controller('ContactController', ['$scope', function($scope) {
+      $scope.formData = {};
+
+      $scope.submitForm = function() {
+        // Add form submission logic here
+        console.log('Form submitted with data:', $scope.formData);
+        // You can add further logic such as sending the form data to a server or displaying a success message
+      };
+    }]);
+  </script>
+</body>
+</html>
